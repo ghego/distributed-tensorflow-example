@@ -46,7 +46,7 @@ mnist_path = "/local_scratch/tensorflow/mnist/input_data"
 
 # load mnist data set
 from tensorflow.examples.tutorials.mnist import input_data
-mnist = input_data.read_data_sets(minst_path, one_hot=True)
+mnist = input_data.read_data_sets(mnist_path, one_hot=True)
 
 if FLAGS.job_name == "ps":
     server.join()
