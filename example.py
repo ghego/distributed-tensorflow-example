@@ -42,7 +42,7 @@ batch_size = 100
 learning_rate = 0.0005
 training_epochs = 20
 logs_path = "/lustre/testers/francesco/tensorflow/mnist/logs"
-
+minst_path = "/lustre/testers/francesco/tensorflow/mnist/input_data"
 
 # load mnist data set
 from tensorflow.examples.tutorials.mnist import input_data
