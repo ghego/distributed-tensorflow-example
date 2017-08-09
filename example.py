@@ -5,10 +5,10 @@ Trains a simple sigmoid neural network on mnist for 20 epochs on three machines 
 Change the hardcoded host urls below with your own hosts. 
 Run like this: 
 
-pc-01$ python example.py --job_name="ps" --task_index=0 
-pc-02$ python example.py --job_name="worker" --task_index=0 
-pc-03$ python example.py --job_name="worker" --task_index=1 
-pc-04$ python example.py --job_name="worker" --task_index=2 
+b25$ python example.py --job_name="ps" --task_index=0 
+b26$ python example.py --job_name="worker" --task_index=0 
+b27$ python example.py --job_name="worker" --task_index=1 
+b28$ python example.py --job_name="worker" --task_index=2 
 
 More details here: ischlag.github.io
 '''
@@ -20,10 +20,10 @@ import sys
 import time
 
 # cluster specification
-parameter_servers = ["pc-01:2222"]
-workers = [	"pc-02:2222", 
-			"pc-03:2222",
-			"pc-04:2222"]
+parameter_servers = ["b25:2222"]
+workers = [	"b26:2222", 
+			"b27:2222",
+			"b28:2222"]
 cluster = tf.train.ClusterSpec({"ps":parameter_servers, "worker":workers})
 
 # input flags
@@ -41,11 +41,12 @@ server = tf.train.Server(
 batch_size = 100
 learning_rate = 0.0005
 training_epochs = 20
-logs_path = "/tmp/mnist/1"
+logs_path = "/lustre/testers/francesco/tflogs/mnist/1"
+mnist_path = "/local_scratch/tensorflow/mnist/input_data"
 
 # load mnist data set
 from tensorflow.examples.tutorials.mnist import input_data
-mnist = input_data.read_data_sets('MNIST_data', one_hot=True)
+mnist = input_data.read_data_sets(minst_path, one_hot=True)
 
 if FLAGS.job_name == "ps":
     server.join()
